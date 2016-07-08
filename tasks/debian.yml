@@ -1,16 +1,36 @@
 ---
-- name: debian | adding mongodb repo key
+- name: debian | adding mongoDB repo key
   apt_key:
     keyserver: "{{ mongodb_apt_keyserver }}"
     id: "{{ mongodb_apt_gpg_key }}"
-    state: present
+    state: "present"
 
-- name: debian | adding mongodb apt repo
+#- name: debian | adding mongoDB apt repo
+#  apt_repository:
+#    repo: "{{ mongodb_debian_apt_repo }}"
+#    state: "present"
+#  when: >
+#        ansible_distribution == "Debian"
+
+- name: debian | adding mongoDB apt repo
   apt_repository:
-    repo: "{{ mongodb_apt_repo }}"
-    state: present
+    repo: "{{ mongodb_ubuntu_apt_repo }}"
+    state: "present"
+  when: >
+        ansible_distribution == "Ubuntu"
 
-- name: debian | installing mongodb
+- name: debian | installing mongoDB
   apt:
-    name: mongodb-org
-    state: present
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - 'mongodb'
+  when: >
+        ansible_distribution == "Debian"
+
+- name: debian | installing mongoDB
+  apt:
+    name: "mongodb-org"
+    state: "present"
+  when: >
+        ansible_distribution == "Ubuntu"
