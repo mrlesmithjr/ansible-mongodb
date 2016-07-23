@@ -1,25 +1,20 @@
 ---
-- name: debian | adding mongoDB repo key
+- name: debian | Adding MongoDB Repo Key
   apt_key:
     keyserver: "{{ mongodb_apt_keyserver }}"
     id: "{{ mongodb_apt_gpg_key }}"
     state: "present"
+  when: >
+        ansible_distribution == "Ubuntu"
 
-#- name: debian | adding mongoDB apt repo
-#  apt_repository:
-#    repo: "{{ mongodb_debian_apt_repo }}"
-#    state: "present"
-#  when: >
-#        ansible_distribution == "Debian"
-
-- name: debian | adding mongoDB apt repo
+- name: debian | Adding MongoDB Apt Repo
   apt_repository:
     repo: "{{ mongodb_ubuntu_apt_repo }}"
     state: "present"
   when: >
         ansible_distribution == "Ubuntu"
 
-- name: debian | installing mongoDB
+- name: debian | Installing MongoDB
   apt:
     name: "{{ item }}"
     state: "present"
@@ -28,9 +23,29 @@
   when: >
         ansible_distribution == "Debian"
 
-- name: debian | installing mongoDB
+- name: debian | Installing MongoDB
   apt:
     name: "mongodb-org"
     state: "present"
   when: >
         ansible_distribution == "Ubuntu"
+
+- name: debian | Configuring MongoDB Service (Xenial)
+  template:
+    src: "etc/systemd/system/mongodb.service.j2"
+    dest: "/etc/systemd/system/mongodb.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  when: >
+        ansible_distribution == "Ubuntu" and
+        ansible_distribution_release|lower == "xenial"
+
+- name: debian | Enabling and Starting MongoDB Service
+  service:
+    name: "mongodb"
+    state: "started"
+    enabled: yes
+  when: >
+        ansible_distribution == "Ubuntu" and
+        ansible_distribution_release|lower == "xenial"
