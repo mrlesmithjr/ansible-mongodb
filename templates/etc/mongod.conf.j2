@@ -31,7 +31,8 @@ processManagement:
 replication:
   replSetName: {{ mongodb_replication_set }}
 
-#security:
+security:
+  authorization: disabled
 #  keyFile: {{ mongodb_replication_keyfile }}
 {% endif %}
 

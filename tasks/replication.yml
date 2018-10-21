@@ -46,8 +46,8 @@
 - name: replication | Setting Permissions on {{ mongodb_replication_keyfile }}
   file:
     path: "{{ mongodb_replication_keyfile }}"
-    owner: mongodb
-    group: nogroup
+    owner: "{{ mongodb_user }}"
+    group: "{{ mongodb_group }}"
     mode: u=r,g=,o=
   become: true
 
