@@ -4,6 +4,8 @@
 
 - [ansible-mongodb](#ansible-mongodb)
   - [Requirements](#requirements)
+    - [Name Resolution](#name-resolution)
+    - [Inventory](#inventory)
   - [Role Variables](#role-variables)
   - [Dependencies](#dependencies)
   - [Example Playbook](#example-playbook)
@@ -16,8 +18,27 @@ An [Ansible](https://www.ansible.com) role to install [MongoDB](https://www.mong
 
 ## Requirements
 
+### Name Resolution
+
 If setting up replication, ensure that DNS works between hosts or
 update /etc/hosts appropriately.
+
+Install additional roles applicable for this role:
+
+```bash
+ansible-galaxy install -r requirements.yml
+```
+
+### Inventory
+
+The following is an example inventory for replication:
+
+```bash
+[mongodb_cluster]
+mongo1.example.com
+mongo2.example.com
+mongo3.example.com
+```
 
 ## Role Variables
 
@@ -29,16 +50,7 @@ None
 
 ## Example Playbook
 
-```yaml
----
-- hosts: test-nodes
-  become: true
-  vars:
-    pri_domain_name: 'test.vagrant.local'
-  roles:
-    - role: ansible-mongodb
-  tasks:
-```
+[playbook.yml](playbook.yml)
 
 ## License
 
