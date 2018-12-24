@@ -4,14 +4,16 @@
     name: epel-release
     state: present
   become: true
+  register: result
+  until: result is successful
 
 - name: redhat | Installing Pre-Reqs
   yum:
-    name: "{{ item }}"
+    name: ["python-pip"]
     state: present
   become: true
-  loop:
-  - python-pip
+  register: result
+  until: result is successful
 
 - name: redhat | Adding MongoDB Repo
   yum_repository:
@@ -26,12 +28,11 @@
 
 - name: redhat | Installing MongoDB
   yum:
-    name: "{{ item }}"
+    name: ["mongodb-org", "mongodb-org-server"]
     state: present
   become: true
-  loop:
-  - mongodb-org
-  - mongodb-org-server
+  register: result
+  until: result is successful
 
 - name: redhat | Ensuring MongoDB Is Enabled and Started
   service:

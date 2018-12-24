@@ -1,12 +1,11 @@
 ---
 - name: debian | Installing Pre-Reqs
   apt:
-    name: "{{ item }}"
+    name: ["apt-transport-https", "python-pip"]
     state: present
   become: true
-  loop:
-  - apt-transport-https
-  - python-pip
+  register: result
+  until: result is successful
 
 - name: debian | Adding MongoDB Repo Key
   apt_key:
@@ -14,12 +13,16 @@
     id: "{{ mongodb_apt_gpg_key }}"
     state: present
   become: true
+  register: result
+  until: result is successful
 
 - name: debian | Adding MongoDB Apt Repo
   apt_repository:
     repo: "{{ mongodb_apt_repo_debian }}"
     state: present
   become: true
+  register: result
+  until: result is successful
   when: ansible_distribution == "Debian"
 
 - name: debian | Adding MongoDB Apt Repo
@@ -27,16 +30,17 @@
     repo: "{{ mongodb_apt_repo_ubuntu }}"
     state: present
   become: true
+  register: result
+  until: result is successful
   when: ansible_distribution == "Ubuntu"
 
 - name: debian | Installing MongoDB
   apt:
-    name: "{{ item }}"
+    name: ["mongodb-org", "mongodb-org-server"]
     state: present
   become: true
-  loop:
-  - mongodb-org
-  - mongodb-org-server
+  register: result
+  until: result is successful
 
 - name: debian | Enabling and Starting MongoDB Service
   service:

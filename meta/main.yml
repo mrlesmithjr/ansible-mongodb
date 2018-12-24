@@ -1,24 +1,26 @@
+---
 galaxy_info:
   author: Larry Smith Jr.
   description: An Ansible role to install MongoDB
 
-  license: license (MIT)
+  license: MIT
 
   min_ansible_version: 2.5
 
   platforms:
-  - name: Debian
-    versions:
-    - jessie
-    - stretch
-  - name: EL
-    versions:
-    - 7
-  - name: Ubuntu
-    versions:
-    - precise
-    - trusty
-    - xenial
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - bionic
+        - precise
+        - trusty
+        - xenial
 
   galaxy_tags:
     - nosql

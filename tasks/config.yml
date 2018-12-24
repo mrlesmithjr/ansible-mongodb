@@ -6,4 +6,4 @@
   become: true
   register: mongodb_configured
   notify:
-  - restart mongod
+    - restart mongod

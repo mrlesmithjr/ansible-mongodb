@@ -38,8 +38,8 @@
   become: true
   loop: "{{ mongodb_users }}"
   when: >
-        not mongod_admin_user_check['stat']['exists'] and
-        not mongod_admin_user_created['changed']
+    not mongod_admin_user_check['stat']['exists'] and
+    not mongod_admin_user_created['changed']
 
 - name: users | Creating MongoDB Users
   mongodb_user:
@@ -54,9 +54,9 @@
   failed_when: false
   loop: "{{ mongodb_users }}"
   when: >
-        (not mongod_admin_user_check['stat']['exists'] and
-        mongod_admin_user_created['changed']) or
-        mongod_admin_user_check['stat']['exists']
+    (not mongod_admin_user_check['stat']['exists'] and
+    mongod_admin_user_created['changed']) or
+    mongod_admin_user_check['stat']['exists']
 
 - name: users | Marking As MongoDB Admin User Created
   file:
@@ -64,5 +64,5 @@
     state: touch
   become: true
   when: >
-        not mongod_admin_user_check['stat']['exists'] and
-        mongod_admin_user_created['changed']
+    not mongod_admin_user_check['stat']['exists'] and
+    mongod_admin_user_created['changed']
