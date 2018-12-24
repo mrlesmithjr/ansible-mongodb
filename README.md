@@ -1,8 +1,9 @@
-# ansible-mongodb
-
-<!-- TOC -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [ansible-mongodb](#ansible-mongodb)
+  - [Build Status](#build-status)
   - [Requirements](#requirements)
     - [Name Resolution](#name-resolution)
     - [Inventory](#inventory)
@@ -12,9 +13,15 @@
   - [License](#license)
   - [Author Information](#author-information)
 
-<!-- /TOC -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# ansible-mongodb
 
 An [Ansible](https://www.ansible.com) role to install [MongoDB](https://www.mongodb.org/)
+
+## Build Status
+
+[![Build Status](https://travis-ci.org/mrlesmithjr/ansible-mongodb.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-mongodb)
 
 ## Requirements
 
