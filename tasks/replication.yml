@@ -8,8 +8,8 @@
   shell: openssl rand -base64 741 | xargs echo -n
   register: repl_set_key
   when: >
-        not mongodb_repl_keyfile['stat']['exists'] and
-        inventory_hostname == mongodb_replication_master
+    not mongodb_repl_keyfile['stat']['exists'] and
+    inventory_hostname == mongodb_replication_master
 
 - name: replication | Creating Replication Set Keyfile {{ mongodb_replication_keyfile }}
   file:
@@ -22,8 +22,8 @@
   set_fact:
     mongodb_replica_set_key: "{{ hostvars[mongodb_replication_master]['repl_set_key']['stdout'] }}"
   when: >
-        not mongodb_repl_keyfile['stat']['exists'] and
-        inventory_hostname != mongodb_replication_master
+    not mongodb_repl_keyfile['stat']['exists'] and
+    inventory_hostname != mongodb_replication_master
 
 - name: replication | Adding Replication Set Key to {{ mongodb_replication_keyfile }}
   lineinfile:
@@ -31,8 +31,8 @@
     line: "{{ repl_set_key['stdout'] }}"
   become: true
   when: >
-        not mongodb_repl_keyfile['stat']['exists'] and
-        inventory_hostname == mongodb_replication_master
+    not mongodb_repl_keyfile['stat']['exists'] and
+    inventory_hostname == mongodb_replication_master
 
 - name: replication | Adding Replication Set Key to {{ mongodb_replication_keyfile }}
   lineinfile:
@@ -40,8 +40,8 @@
     line: "{{ mongodb_replica_set_key }}"
   become: true
   when: >
-        not mongodb_repl_keyfile['stat']['exists'] and
-        inventory_hostname != mongodb_replication_master
+    not mongodb_repl_keyfile['stat']['exists'] and
+    inventory_hostname != mongodb_replication_master
 
 - name: replication | Setting Permissions on {{ mongodb_replication_keyfile }}
   file:
@@ -64,7 +64,7 @@
     src: repset_init.js.j2
     dest: /tmp/repset_init.js
   when: >
-        inventory_hostname == mongodb_replication_master
+    inventory_hostname == mongodb_replication_master
 
 - name: replication | Checking If Replication Set Has Been Initialized
   stat:
@@ -76,18 +76,18 @@
   command: 'mongo --port {{ mongodb_port }} -u "{{ mongodb_admin_user.name }}" -p "{{ mongodb_admin_user.password }}" --authenticationDatabase "admin" /tmp/repset_init.js'
   register: mongodb_repl_set_init
   when: >
-        inventory_hostname == mongodb_replication_master and
-        not mongodb_replication_set_initialized['stat']['exists'] and
-        mongodb_create_users
+    inventory_hostname == mongodb_replication_master and
+    not mongodb_replication_set_initialized['stat']['exists'] and
+    mongodb_create_users
 
 - name: replication | Initializing Replication Set
-  command: 'mongo --port {{ mongodb_port }} /tmp/repset_init.js'
+  command: "mongo --port {{ mongodb_port }} /tmp/repset_init.js"
   register: mongodb_repl_set_init
   become: true
   when: >
-        inventory_hostname == mongodb_replication_master and
-        not mongodb_replication_set_initialized['stat']['exists'] and
-        not mongodb_create_users
+    inventory_hostname == mongodb_replication_master and
+    not mongodb_replication_set_initialized['stat']['exists'] and
+    not mongodb_create_users
 
 - name: replication | Marking Replication Set As Initialized
   file:
@@ -95,5 +95,5 @@
     state: touch
   become: true
   when: >
-        inventory_hostname == mongodb_replication_master and
-        mongodb_repl_set_init['changed']
+    inventory_hostname == mongodb_replication_master and
+    mongodb_repl_set_init['changed']

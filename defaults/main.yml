@@ -1,17 +1,17 @@
 ---
 # defaults file for ansible-mongodb
 mongodb_admin_user:
-    name: admin
-    password: admin
-    database: admin
-    roles:
-      - userAdminAnyDatabase
-    state: present
+  name: admin
+  password: admin
+  database: admin
+  roles:
+    - userAdminAnyDatabase
+  state: present
 
 mongodb_apt_keyserver: keyserver.ubuntu.com
 mongodb_apt_gpg_key: 9DA31620334BD75D9DCB49F368818C72E52529D4
-mongodb_apt_repo_debian: "deb https://repo.mongodb.org/apt/{{ ansible_distribution|lower }} {{ ansible_distribution_release }}/mongodb-org/{{ mongodb_version }} main"
-mongodb_apt_repo_ubuntu: "deb https://repo.mongodb.org/apt/{{ ansible_distribution|lower }} {{ ansible_distribution_release }}/mongodb-org/{{ mongodb_version }} multiverse"
+mongodb_apt_repo_debian: "{{ 'deb https://repo.mongodb.org/apt/' + ansible_distribution|lower + ' ' + ansible_distribution_release + '/mongodb-org/' + mongodb_version + ' main' }}"
+mongodb_apt_repo_ubuntu: "{{ 'deb https://repo.mongodb.org/apt/' + ansible_distribution|lower + ' ' + ansible_distribution_release + '/mongodb-org/' + mongodb_version + ' multiverse' }}"
 
 # Defines the binding IP address for MongoDB to listen on
 # Ensure to change from default (127.0.0.1) if setting up replication
@@ -35,10 +35,10 @@ mongodb_port: 27017
 mongodb_redhat_repo_info:
   name: MongoDB-Repository
   description: MongoDB-Repository
-  baseurl: "https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/{{ mongodb_version }}/x86_64/"
+  baseurl: "{{ 'https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/' + mongodb_version + '/x86_64/' }}"
   gpgcheck: yes
   enabled: yes
-  gpgkey: "https://www.mongodb.org/static/pgp/server-{{ mongodb_version }}.asc"
+  gpgkey: "{{ 'https://www.mongodb.org/static/pgp/server-' + mongodb_version + '.asc' }}"
 
 # Defines if MongoDB replication is configured
 mongodb_replication: false
@@ -47,7 +47,7 @@ mongodb_replication: false
 mongodb_replication_group: mongodb_cluster
 
 # Defines the keyFile to setup replication if using authentication
-mongodb_replication_keyfile: "{{ mongodb_dbPath }}/keyFile"
+mongodb_replication_keyfile: "{{ mongodb_dbPath + '/keyFile' }}"
 
 # Defines the node which should be considered the replication master
 mongodb_replication_master: "{{ groups[mongodb_replication_group][0] }}"
@@ -69,4 +69,4 @@ mongodb_users:
     state: present
 
 # Define MongoDB version to install
-mongodb_version: 4.0
+mongodb_version: "4.0"
