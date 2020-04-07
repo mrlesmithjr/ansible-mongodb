@@ -9,8 +9,7 @@
 
 - name: debian | Adding MongoDB Repo Key
   apt_key:
-    keyserver: "{{ mongodb_apt_keyserver }}"
-    id: "{{ mongodb_apt_gpg_key }}"
+    url: "{{ mongodb_gpg_key }}"
     state: present
   become: true
   register: result

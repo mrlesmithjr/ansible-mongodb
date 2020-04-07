@@ -9,7 +9,6 @@ mongodb_admin_user:
   state: present
 
 mongodb_apt_keyserver: keyserver.ubuntu.com
-mongodb_apt_gpg_key: 9DA31620334BD75D9DCB49F368818C72E52529D4
 mongodb_apt_repo_debian: "{{ 'deb https://repo.mongodb.org/apt/' + ansible_distribution|lower + ' ' + ansible_distribution_release + '/mongodb-org/' + mongodb_version|string + ' main' }}"
 mongodb_apt_repo_ubuntu: "{{ 'deb https://repo.mongodb.org/apt/' + ansible_distribution|lower + ' ' + ansible_distribution_release + '/mongodb-org/' + mongodb_version|string + ' multiverse' }}"
 
@@ -29,6 +28,8 @@ mongodb_config_mongodb: false
 # Defines if MongoDB users should be created.
 mongodb_create_users: false
 
+mongodb_gpg_key: "{{ 'https://www.mongodb.org/static/pgp/server-'+mongodb_version|string+'.asc' }}"
+
 # Defines the listen port for MongoDB
 mongodb_port: 27017
 
@@ -38,7 +39,7 @@ mongodb_redhat_repo_info:
   baseurl: "{{ 'https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/' + mongodb_version|string + '/x86_64/' }}"
   gpgcheck: yes
   enabled: yes
-  gpgkey: "{{ 'https://www.mongodb.org/static/pgp/server-' + mongodb_version|string + '.asc' }}"
+  gpgkey: "{{ mongodb_gpg_key }}"
 
 # Defines if MongoDB replication is configured
 mongodb_replication: false
