@@ -1,3 +1,9 @@
+commit 3c15d4b0c5062c0573b3833d3833f3ecba11eb28
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Tue Apr 7 18:59:40 2020 -0400
+
+    Fixing Python modules and repo configs
+
 commit 919ded5b196b62276c1972061e47e15907aa2994
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Tue Apr 7 18:32:50 2020 -0400
