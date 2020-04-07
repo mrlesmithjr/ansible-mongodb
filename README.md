@@ -1,59 +1,27 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [ansible-mongodb](#ansible-mongodb)
-  - [Build Status](#build-status)
-  - [Requirements](#requirements)
-    - [Name Resolution](#name-resolution)
-    - [Inventory](#inventory)
-  - [Role Variables](#role-variables)
-  - [Dependencies](#dependencies)
-  - [Example Playbook](#example-playbook)
-  - [License](#license)
-  - [Author Information](#author-information)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # ansible-mongodb
 
-An [Ansible](https://www.ansible.com) role to install [MongoDB](https://www.mongodb.org/)
+Ansible role to install/configure MongoDB
 
 ## Build Status
+
+### GitHub Actions
+
+![Molecule Test](https://github.com/mrlesmithjr/ansible-mongodb/workflows/Molecule%20Test/badge.svg)
+
+### Travis CI
 
 [![Build Status](https://travis-ci.org/mrlesmithjr/ansible-mongodb.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-mongodb)
 
 ## Requirements
 
-### Name Resolution
-
-If setting up replication, ensure that DNS works between hosts or
-update /etc/hosts appropriately.
-
-Install additional roles applicable for this role:
-
-```bash
-ansible-galaxy install -r requirements.yml
-```
-
-### Inventory
-
-The following is an example inventory for replication:
-
-```bash
-[mongodb_cluster]
-mongo1.example.com
-mongo2.example.com
-mongo3.example.com
-```
+For any required Ansible roles, review:
+[requirements.yml](requirements.yml)
 
 ## Role Variables
 
 [defaults/main.yml](defaults/main.yml)
 
 ## Dependencies
-
-None
 
 ## Example Playbook
 
@@ -65,8 +33,10 @@ MIT
 
 ## Author Information
 
-Larry Smith Jr.
+Larry Smith jr.
 
-- [EverythingShouldBeVirtual](http://everythingshouldbevirtual.com)
-- [@mrlesmithjr](https://www.twitter.com/mrlesmithjr)
+- [@mrlesmithjr](https://twitter.com/mrlesmithjr)
 - [mrlesmithjr@gmail.com](mailto:mrlesmithjr@gmail.com)
+- [http://everythingshouldbevirtual.com](http://everythingshouldbevirtual.com)
+
+> NOTE: Repo has been created/updated using [https://github.com/mrlesmithjr/cookiecutter-ansible-role](https://github.com/mrlesmithjr/cookiecutter-ansible-role) as a template.
