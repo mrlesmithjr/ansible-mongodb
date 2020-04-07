@@ -1,3 +1,9 @@
+commit 624df3bc50fe92b6359cb52ad7bda0f43c2fc337
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Tue Apr 7 19:33:48 2020 -0400
+
+    Fixing Fedora install
+
 commit 3c15d4b0c5062c0573b3833d3833f3ecba11eb28
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Tue Apr 7 18:59:40 2020 -0400
