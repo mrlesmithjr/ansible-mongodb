@@ -28,7 +28,7 @@
   register: mongod_admin_user_created
   when: not mongod_admin_user_check['stat']['exists']
 
-- name: users | Creating MongoDB Users
+- name: users | Creating MongoDB Users # noqa 503
   mongodb_user:
     database: "{{ item['database'] }}"
     name: "{{ item['name'] }}"
@@ -41,7 +41,7 @@
     not mongod_admin_user_check['stat']['exists'] and
     not mongod_admin_user_created['changed']
 
-- name: users | Creating MongoDB Users
+- name: users | Creating MongoDB Users # noqa 503
   mongodb_user:
     database: "{{ item['database'] }}"
     login_password: "{{ mongodb_admin_user['password'] }}"
@@ -58,7 +58,7 @@
     mongod_admin_user_created['changed']) or
     mongod_admin_user_check['stat']['exists']
 
-- name: users | Marking As MongoDB Admin User Created
+- name: users | Marking As MongoDB Admin User Created # noqa 503
   file:
     path: /var/log/mongod_admin_set
     state: touch
