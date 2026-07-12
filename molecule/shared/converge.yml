@@ -10,7 +10,7 @@
   tasks:
     - name: Include ansible-bootstrap-python
       include_role:
-        name: mrlesmithjr.bootstrap_python
+        name: ansible-bootstrap-python
     - name: Include ansible-mongodb
       include_role:
         name: mrlesmithjr.mongodb
