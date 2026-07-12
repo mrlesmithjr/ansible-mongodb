@@ -1,10 +1,16 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    # mongodb_version defaults to 4.2, which MongoDB never published apt
+    # packages for on Ubuntu jammy (22.04) -- override for this scenario
+    # only, not the role default. See issue for the real default-version
+    # follow-up.
+    mongodb_version: "7.0"
   tasks:
     - name: Include ansible-bootstrap-python
       include_role:
-        name: ansible-bootstrap-python
+        name: mrlesmithjr.bootstrap_python
     - name: Include ansible-mongodb
       include_role:
-        name: ansible-mongodb
+        name: mrlesmithjr.mongodb

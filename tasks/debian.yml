@@ -1,7 +1,7 @@
 ---
 - name: debian | Installing Pre-Reqs
   apt:
-    name: ["apt-transport-https", "python-pip"]
+    name: ["apt-transport-https", "python3-pip"]
     state: present
   become: true
   register: result

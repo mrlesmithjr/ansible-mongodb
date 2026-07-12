@@ -2,6 +2,9 @@
 galaxy_info:
   author: Larry Smith Jr.
   description: Ansible role to install/configure MongoDB
+  role_name: mongodb
+  namespace: mrlesmithjr
+
   license: MIT
   min_ansible_version: 2.8
 
